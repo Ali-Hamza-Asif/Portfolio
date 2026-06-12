@@ -41,7 +41,6 @@
       color: var(--text);
       font-family: 'Syne', sans-serif;
       overflow-x: hidden;
-      cursor: none;
     }
 
     /* ─── LOADING SCREEN ─── */
@@ -136,61 +135,6 @@
       }
     }
 
-    /* ─── CUSTOM CURSOR ─── */
-    #cursor {
-      width: 10px;
-      height: 10px;
-      background: var(--accent);
-      border-radius: 50%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 12px var(--accent), 0 0 24px var(--accent);
-      transition: transform 0.08s ease, width 0.2s, height 0.2s;
-    }
-
-    #cursor-ring {
-      width: 38px;
-      height: 38px;
-      border: 1.5px solid rgba(0, 212, 255, 0.5);
-      border-radius: 50%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 9997;
-      transform: translate(-50%, -50%);
-      transition: left 0.12s ease, top 0.12s ease;
-      animation: ringRotate 3s linear infinite;
-    }
-
-    #cursor-ring::before {
-      content: '';
-      position: absolute;
-      inset: -4px;
-      border: 1px solid rgba(124, 58, 237, 0.3);
-      border-radius: 50%;
-      animation: ringRotate 5s linear infinite reverse;
-    }
-
-    @keyframes ringRotate {
-      from {
-        transform: translate(-50%, -50%) rotate(0deg);
-      }
-
-      to {
-        transform: translate(-50%, -50%) rotate(360deg);
-      }
-    }
-
-    body:has(a:hover) #cursor,
-    body:has(button:hover) #cursor {
-      width: 16px;
-      height: 16px;
-    }
 
     /* ─── FLOATING CODE BG ─── */
     #code-bg {
@@ -1263,6 +1207,308 @@
         width: 100%;
       }
     }
+
+    /* ─── LIGHT / CLEAN THEME ─── */
+    [data-theme="light"] {
+      --bg: #f7f7f5;
+      --bg2: #f0ede8;
+      --surface: #ffffff;
+      --surface2: #f9f8f6;
+      --border: #e2ddd8;
+      --accent: #2563eb;
+      --accent2: #7c3aed;
+      --accent3: #059669;
+      --text: #1a1a1a;
+      --text-muted: #6b7280;
+      --glow: 0 0 20px rgba(37, 99, 235, 0.15);
+      --glow2: 0 0 20px rgba(124, 58, 237, 0.15);
+    }
+
+    /* hide code bg particles in light mode */
+    [data-theme="light"] #code-bg {
+      display: none;
+    }
+
+    /* restore cursor to default in light mode */
+    [data-theme="light"] body {
+      cursor: auto;
+    }
+
+    [data-theme="light"] #cursor,
+    [data-theme="light"] #cursor-ring {
+      display: none;
+    }
+
+    /* nav */
+    [data-theme="light"] nav {
+      background: rgba(247, 247, 245, 0.88);
+      border-bottom-color: var(--border);
+    }
+
+    /* hero name gradient */
+    [data-theme="light"] h1.hero-name {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2563eb 50%, #7c3aed 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: none;
+    }
+
+    /* avatar */
+    [data-theme="light"] .avatar-circle {
+      background: radial-gradient(circle at 30% 30%, #dbeafe, #ede9fe);
+      border-color: #2563eb;
+      box-shadow: 0 8px 32px rgba(37, 99, 235, 0.12);
+    }
+
+    [data-theme="light"] .avatar-circle::before {
+      background: conic-gradient(transparent 340deg, rgba(37, 99, 235, 0.35) 360deg);
+    }
+
+    [data-theme="light"] #cursor-ring {
+      border-color: rgba(37, 99, 235, 0.4);
+    }
+
+    /* ripple rings */
+    [data-theme="light"] .ripple-ring {
+      border-color: rgba(37, 99, 235, 0.18);
+    }
+
+    [data-theme="light"] .ripple-ring:nth-child(2) {
+      border-color: rgba(124, 58, 237, 0.12);
+    }
+
+    [data-theme="light"] .ripple-ring:nth-child(3) {
+      border-color: rgba(5, 150, 105, 0.1);
+    }
+
+    /* 3d card */
+    [data-theme="light"] .card-3d {
+      background: #ffffff;
+      border-color: #e2ddd8;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(37, 99, 235, 0.06);
+    }
+
+    [data-theme="light"] .card-3d::before {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.04), transparent 60%);
+    }
+
+    /* marquee */
+    [data-theme="light"] .marquee-section {
+      border-color: var(--border);
+    }
+
+    [data-theme="light"] .marquee-item::before {
+      color: #7c3aed;
+    }
+
+    /* section title span */
+    [data-theme="light"] .section-title span {
+      background: linear-gradient(90deg, #2563eb, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* stat cards */
+    [data-theme="light"] .stat-card {
+      background: #ffffff;
+      border-color: #e2ddd8;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    [data-theme="light"] .stat-card:hover {
+      border-color: #2563eb;
+      box-shadow: var(--glow);
+    }
+
+    [data-theme="light"] .stat-num {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* skills section bg */
+    [data-theme="light"] #skills {
+      background: #f0ede8;
+    }
+
+    [data-theme="light"] .skill-track {
+      background: #e2ddd8;
+    }
+
+    [data-theme="light"] .skill-bar {
+      background: linear-gradient(90deg, #2563eb, #7c3aed);
+      box-shadow: none;
+    }
+
+    [data-theme="light"] .skill-label span:last-child {
+      color: #2563eb;
+    }
+
+    /* project cards */
+    [data-theme="light"] .project-card {
+      background: #ffffff;
+      border-color: #e2ddd8;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    [data-theme="light"] .project-card:hover {
+      border-color: rgba(37, 99, 235, 0.35);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+    }
+
+    [data-theme="light"] .project-card::before {
+      background: linear-gradient(90deg, transparent, #2563eb, #7c3aed, #059669, transparent);
+    }
+
+    [data-theme="light"] .tag {
+      background: rgba(37, 99, 235, 0.07);
+      border-color: rgba(37, 99, 235, 0.18);
+      color: #2563eb;
+    }
+
+    /* education */
+    [data-theme="light"] #education {
+      background: #f0ede8;
+    }
+
+    [data-theme="light"] .timeline::before {
+      background: linear-gradient(to bottom, #2563eb, #7c3aed, transparent);
+    }
+
+    [data-theme="light"] .timeline-item::before {
+      background: #2563eb;
+      box-shadow: 0 0 8px rgba(37, 99, 235, 0.35);
+    }
+
+    [data-theme="light"] .timeline-year {
+      color: #059669;
+    }
+
+    [data-theme="light"] .cert-item {
+      background: #ffffff;
+      border-color: #e2ddd8;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    }
+
+    [data-theme="light"] .cert-item:hover {
+      border-color: #7c3aed;
+      box-shadow: var(--glow2);
+    }
+
+    [data-theme="light"] .cert-by {
+      color: #7c3aed;
+    }
+
+    /* contact */
+    [data-theme="light"] .c-ring {
+      border-color: rgba(37, 99, 235, 0.1);
+    }
+
+    [data-theme="light"] .c-ring:nth-child(2) {
+      border-color: rgba(124, 58, 237, 0.07);
+    }
+
+    [data-theme="light"] .c-ring:nth-child(3) {
+      border-color: rgba(5, 150, 105, 0.05);
+    }
+
+    [data-theme="light"] .contact-link {
+      border-color: #e2ddd8;
+    }
+
+    [data-theme="light"] .contact-link:hover {
+      color: #2563eb;
+      border-color: #2563eb;
+      box-shadow: var(--glow);
+    }
+
+    /* footer */
+    [data-theme="light"] footer {
+      background: #f0ede8;
+      border-top-color: #e2ddd8;
+      color: #6b7280;
+    }
+
+    /* loader */
+    [data-theme="light"] #loader {
+      background: #f7f7f5;
+    }
+
+    /* nav logo */
+    [data-theme="light"] .nav-logo {
+      background: linear-gradient(90deg, #2563eb, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    [data-theme="light"] .nav-links a:hover {
+      color: #2563eb;
+      text-shadow: none;
+    }
+
+    /* buttons */
+    [data-theme="light"] .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.25);
+    }
+
+    [data-theme="light"] .btn-primary:hover {
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+    }
+
+    [data-theme="light"] .btn-ghost {
+      color: #2563eb;
+      border-color: #2563eb;
+    }
+
+    [data-theme="light"] .btn-ghost:hover {
+      background: rgba(37, 99, 235, 0.06);
+    }
+
+    /* hero role */
+    [data-theme="light"] .hero-role {
+      color: #2563eb;
+    }
+
+    [data-theme="light"] .hero-role span {
+      color: #7c3aed;
+    }
+
+    /* hero tag */
+    [data-theme="light"] .hero-tag {
+      color: #059669;
+    }
+
+    [data-theme="light"] .hero-tag::before {
+      background: #059669;
+    }
+
+    /* about text */
+    [data-theme="light"] .about-text p {
+      color: #4b5563;
+    }
+
+    /* theme toggle button */
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.4rem 0.9rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: color 0.2s, border-color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .theme-toggle:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
   </style>
 </head>
 
@@ -1277,9 +1523,6 @@
     <div class="loader-text">INITIALIZING_PORTFOLIO.exe▌</div>
   </div>
 
-  <!-- CURSOR -->
-  <div id="cursor"></div>
-  <div id="cursor-ring"></div>
 
   <!-- FLOATING CODE BG -->
   <div id="code-bg"></div>
@@ -1294,6 +1537,10 @@
       <li><a href="#education">education</a></li>
       <li><a href="#contact">contact</a></li>
     </ul>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <span id="themeIcon">☀</span>
+      <span id="themeLabel">Light</span>
+    </button>
   </nav>
 
   <main>
@@ -1388,7 +1635,7 @@
               <div class="stat-label">Programming Languages</div>
             </div>
             <div class="stat-card">
-              <div class="stat-num">2</div>
+              <div class="stat-num">3</div>
               <div class="stat-label">Certifications</div>
             </div>
             <div class="stat-card">
@@ -1519,11 +1766,13 @@
               <span class="tag">HTML5</span><span class="tag">JavaScript</span><span class="tag">CSS</span>
             </div>
           </a>
-          <a href="https://ali-hamza-asif.github.io/Calculator/" target="_blank"
-            class="project-card reveal fade-up" style="text-decoration: none; display: block;">
+          <a href="https://ali-hamza-asif.github.io/Calculator/" target="_blank" class="project-card reveal fade-up"
+            style="text-decoration: none; display: block;">
             <div class="project-icon">🗄️</div>
             <div class="project-title">SubscribeCalc – Subscription‑Gated Calculator</div>
-            <div class="project-desc">A modern calculator with a twist: users must “subscribe” (demo‑friendly) to see calculation results. Built with React hooks, localStorage, and a polished glassmorphic UI. Perfect showcase of conditional logic, modals, and real‑time expression evaluation.</div>
+            <div class="project-desc">A modern calculator with a twist: users must “subscribe” (demo‑friendly) to see
+              calculation results. Built with React hooks, localStorage, and a polished glassmorphic UI. Perfect
+              showcase of conditional logic, modals, and real‑time expression evaluation.</div>
             <div class="project-tags">
               <span class="tag">React</span><span class="tag">JavaScript</span><span class="tag">HTML5/CSS3</span>
             </div>
@@ -1599,6 +1848,13 @@
                 <div class="cert-by">AI Fundamentals Track</div>
               </div>
             </div>
+            <div class="cert-item">
+              <div class="cert-icon">🔐</div>
+              <div>
+                <div class="cert-name">Cyber Job Simulation</div>
+                <div class="cert-by">Deloitte</div>
+              </div>
+            </div>
             <div class="cert-item" style="opacity:0.5;border-style:dashed;">
               <div class="cert-icon">🕛</div>
               <div>
@@ -1659,21 +1915,6 @@
       }, 2000);
     });
 
-    // ─── CURSOR ───
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursor-ring');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-    function animateCursor() {
-      cursor.style.left = mx + 'px';
-      cursor.style.top = my + 'px';
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      ring.style.left = rx + 'px';
-      ring.style.top = ry + 'px';
-      requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
 
     // ─── FLOATING CODE BG ───
     const codeFragments = [
@@ -1763,6 +2004,32 @@
     // ─── STAGGER reveal delays ───
     document.querySelectorAll('.projects-grid .project-card').forEach((c, i) => {
       c.style.transitionDelay = (i * 0.1) + 's';
+    });
+
+    // ─── THEME TOGGLE ───
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeLabel = document.getElementById('themeLabel');
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme === 'light' ? 'light' : '');
+      if (theme === 'light') {
+        themeIcon.textContent = '◑';
+        themeLabel.textContent = 'Dark';
+        localStorage.setItem('theme', 'light');
+      } else {
+        themeIcon.textContent = '☀';
+        themeLabel.textContent = 'Light';
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    applyTheme(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      applyTheme(current === 'light' ? 'dark' : 'light');
     });
   </script>
 </body>
